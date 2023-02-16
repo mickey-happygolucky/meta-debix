@@ -1,41 +1,66 @@
+# meta-debix Layer
+
 This README file contains information on the contents of the meta-debix layer.
 
 Please see the corresponding sections below for details.
 
-Dependencies
-============
+## Dependencies
 
-  URI: <first dependency>
-  branch: <branch name>
-
-  URI: <second dependency>
-  branch: <branch name>
-
-  .
-  .
-  .
-
-Patches
-=======
-
-Please submit any patches against the meta-debix layer to the xxxx mailing list (xxxx@zzzz.org)
-and cc: the maintainer:
-
-Maintainer: XXX YYYYYY <xxx.yyyyyy@zzzzz.com>
-
-Table of Contents
-=================
-
-  I. Adding the meta-debix layer to your build
- II. Misc
+  * imx-yocto-bsp(imx-5.10.72-2.2.0)
 
 
-I. Adding the meta-debix layer to your build
-=================================================
+## Patches
 
-Run 'bitbake-layers add-layer meta-debix'
+Please submit any patches against the meta-debix layer to the maintainer:
 
-II. Misc
-========
+Maintainer: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
 
---- replace with specific information about the meta-debix layer ---
+
+## Build instruction
+
+Build instruction as follows:
+
+1. Setup the imx-yocto-bsp
+2. Get the meta-debix
+3. Add the meta-debix to build
+4. Edit the local.conf
+5. Run bitbake
+
+
+### Setup the imx-yocto-bsp
+
+```txt
+$ repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-hardknott -m imx-5.10.72-2.2.0.xml
+$ repo sync
+$ DISTRO=fsl-imx-wayland MACHINE=imx8mp-lpddr4-evk source imx-setup-release.sh -b build
+```
+
+### Get the meta-debix
+
+Get the meta-debix with git.
+Move the meta-debix into source directory.
+
+### Add the meta-debix to build
+
+Do the commands in the build directory.
+
+```txt
+$ bitbake-layers add-layer ../sources/meta-debix
+```
+
+### Edit the local.conf
+
+Add the line to `conf/local.conf` as follows.
+
+```
+MACHINE = "debix-a"
+IMAGE_INSTALL_append = " linux-debix-modules"
+```
+
+###  Run bitbake
+
+For example build the core-image-minimal.
+
+```txt
+$ bitbake core-image-minimal
+```
