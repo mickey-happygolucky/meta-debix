@@ -1,0 +1,25 @@
+From 158599ad1e2e9da2ee8cd5b62af7871ec98d1225 Mon Sep 17 00:00:00 2001
+From: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+Date: Thu, 16 Feb 2023 18:23:39 +0900
+Subject: [PATCH] linux-imx: fix tar option
+
+---
+ Makefile | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 5f90097f7..48211c850 100755
+--- a/Makefile
++++ b/Makefile
+@@ -1445,8 +1445,6 @@ _modinst_:
+ 	@sed 's:^:kernel/:' modules.order > $(MODLIB)/modules.order
+ 	@cp -f modules.builtin $(MODLIB)/
+ 	@cp -f $(objtree)/modules.builtin.modinfo $(MODLIB)/
+-	@tar xpf .extra.tar
+-	@cp -rf extra $(MODLIB)/
+ 	$(Q)$(MAKE) -f $(srctree)/scripts/Makefile.modinst
+ 
+ # This depmod is only for convenience to give the initial
+-- 
+2.25.1
+
