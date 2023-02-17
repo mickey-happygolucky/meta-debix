@@ -5,6 +5,8 @@ LICENSE = "CLOSED"
 SRC_URI = "git://github.com/debix-tech/linux;protocol=https;branch=debix"
 SRCREV = "f924d76e63c153f58206425d31f88c5771caeb80"
 
+COMPATIBLE_MACHINE = "debix-a"
+
 S = "${WORKDIR}"
 
 do_unpack:append() {
