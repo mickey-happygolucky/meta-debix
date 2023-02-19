@@ -8,4 +8,5 @@ SRC_URI += "file://0001-lpddr4-modify-size-6GB-to-2GB.patch;subdir=git \
             file://gpio-hog.cfg;subdir=git \
             file://0001-dtb-modify-ethernet-settings.patch;subdir=git \
             file://0002-eth-modify-phy-address.patch;subdir=git \
+            file://default-fdt-file.cfg;subdir=git \
             "
