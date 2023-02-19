@@ -1,0 +1,25 @@
+From 6dfa20cd9b29a252aff73d979368d63530bb2ebc Mon Sep 17 00:00:00 2001
+From: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+Date: Sat, 18 Feb 2023 01:51:30 +0900
+Subject: [PATCH 4/4] clock: add clock for 930MHz
+
+---
+ arch/arm/mach-imx/imx8m/clock_imx8mm.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm/mach-imx/imx8m/clock_imx8mm.c b/arch/arm/mach-imx/imx8m/clock_imx8mm.c
+index 203c52d1d3..f3381cdeeb 100644
+--- a/arch/arm/mach-imx/imx8m/clock_imx8mm.c
++++ b/arch/arm/mach-imx/imx8m/clock_imx8mm.c
+@@ -49,6 +49,8 @@ int enable_i2c_clk(unsigned char enable, unsigned i2c_num)
+ 
+ static struct imx_int_pll_rate_table imx8mm_fracpll_tbl[] = {
+ 	PLL_1443X_RATE(1000000000U, 250, 3, 1, 0),
++	PLL_1443X_RATE(930000000U, 310, 2, 2, 0),
++	PLL_1443X_RATE(800000000U, 200, 3, 1, 0),
+ 	PLL_1443X_RATE(800000000U, 200, 3, 1, 0),
+ 	PLL_1443X_RATE(750000000U, 250, 2, 2, 0),
+ 	PLL_1443X_RATE(650000000U, 325, 3, 2, 0),
+-- 
+2.25.1
+

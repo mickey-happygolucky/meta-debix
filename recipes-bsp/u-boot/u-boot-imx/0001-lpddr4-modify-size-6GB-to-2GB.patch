@@ -1,0 +1,31 @@
+From e4a42303c3376e909b4f3d2b7e965c18838730a9 Mon Sep 17 00:00:00 2001
+From: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+Date: Fri, 17 Feb 2023 22:12:36 +0900
+Subject: [PATCH 1/4] lpddr4: modify size 6GB to 2GB
+
+---
+ include/configs/imx8mp_evk.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/include/configs/imx8mp_evk.h b/include/configs/imx8mp_evk.h
+index a26c651dcf..4a69e275e6 100644
+--- a/include/configs/imx8mp_evk.h
++++ b/include/configs/imx8mp_evk.h
+@@ -199,12 +199,12 @@
+ /* Totally 6GB DDR */
+ #define CONFIG_SYS_SDRAM_BASE		0x40000000
+ #define PHYS_SDRAM			0x40000000
+-#define PHYS_SDRAM_SIZE			0xC0000000	/* 3 GB */
++#define PHYS_SDRAM_SIZE			0x80000000	/* 2 GB */
+ #define PHYS_SDRAM_2			0x100000000
+ #ifdef CONFIG_TARGET_IMX8MP_DDR4_EVK
+ #define PHYS_SDRAM_2_SIZE		0x40000000	/* 1 GB */
+ #else
+-#define PHYS_SDRAM_2_SIZE		0xC0000000	/* 3 GB */
++//#define PHYS_SDRAM_2_SIZE		0xC0000000	/* 3 GB */
+ #endif
+ 
+ #define CONFIG_MXC_UART_BASE		UART2_BASE_ADDR
+-- 
+2.25.1
+
