@@ -6,8 +6,7 @@ Please see the corresponding sections below for details.
 
 ## Dependencies
 
-  * imx-yocto-bsp(imx-5.10.72-2.2.0)
-
+  * imx-yocto-bsp(imx-5.15.71-2.2.0)
 
 ## Patches
 
@@ -26,11 +25,10 @@ Build instruction as follows:
 4. Edit the local.conf
 5. Run bitbake
 
-
 ### Setup the imx-yocto-bsp
 
 ```txt
-$ repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-hardknott -m imx-5.10.72-2.2.0.xml
+$ repo init -u https://github.com/nxp-imx/imx-manifest -b imx-linux-hardknott -m imx-5.15.71-2.2.0
 $ repo sync
 $ DISTRO=fsl-imx-wayland MACHINE=imx8mp-lpddr4-evk source imx-setup-release.sh -b build
 ```
@@ -53,14 +51,32 @@ $ bitbake-layers add-layer ../sources/meta-debix
 Add the line to `conf/local.conf` as follows.
 
 ```
-MACHINE = "debix-a"
-IMAGE_INSTALL_append = " linux-debix-modules"
+MACHINE = "imx8mp-debix-a"
 ```
 
 ###  Run bitbake
 
-For example build the core-image-minimal.
+For example build imx-image-base
 
 ```txt
-$ bitbake core-image-minimal
+$ bitbake imx-image-base
 ```
+
+## Using Official kernel and u-boot
+
+If you want to use the DEBIX official version of kernel and u-boot.
+
+Set "debix-a" to MACHINE in the local.conf as follows:
+
+```
+MACHINE = "debix-a"
+```
+
+### Limitation
+
+The DEBIX official version of kernel is 5.10.
+
+However the GPU driver (kernel-module-imx-gpu-viv) expects the version of kernel is 5.15,
+then cannot use the GPU related functions with official kernel on the main branch.
+
+If you want to use the official version of kernel with GPU, try to use the hardknott branch and imx-yocto-bsp(imx-5.10.72-2.2.0).
