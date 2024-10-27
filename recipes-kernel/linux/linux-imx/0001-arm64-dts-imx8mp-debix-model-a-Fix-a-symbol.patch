@@ -1,0 +1,26 @@
+From 2c3edcf3b1b778dc4c0acd1ed134fe8c54b7e8ab Mon Sep 17 00:00:00 2001
+From: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+Date: Sun, 27 Oct 2024 20:20:17 +0900
+Subject: [PATCH] arm64:dts:imx8mp-debix-model-a: Fix a symbol
+
+Signed-off-by: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+index 267ceffc02d8..67b112676d73 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+@@ -440,7 +440,7 @@ MX8MP_IOMUXC_UART4_TXD__UART4_DCE_TX				0x49
+ 
+ 	pinctrl_usb1: usb1grp {
+ 		fsl,pins = <
+-			MX8MP_IOMUXC_GPIO1_IO14__USB2_OTG_PWR				0x10
++			MX8MP_IOMUXC_GPIO1_IO14__USB2_PWR				0x10
+ 		>;
+ 	};
+ 
+-- 
+2.34.1
+

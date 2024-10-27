@@ -1,0 +1,22 @@
+From 5a0cff45d19aa7d6624e641cc7cd1f8370979d4c Mon Sep 17 00:00:00 2001
+From: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+Date: Sun, 27 Oct 2024 17:49:18 +0900
+Subject: [PATCH] arm64:dts:imx8mp-debix-model-a: Add a supply to usb3_phy1
+
+Signed-off-by: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+index 67b112676d73..011aa4489284 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+@@ -265,6 +265,7 @@ &uart4 {
+ };
+ 
+ &usb3_phy1 {
++	phy-supply = <&reg_usb_hub>;
+ 	status = "okay";
+ };
+ 

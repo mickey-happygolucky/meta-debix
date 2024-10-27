@@ -1,0 +1,121 @@
+From e66f0fdf19138e74061f51d6927f175dc17bceb2 Mon Sep 17 00:00:00 2001
+From: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+Date: Sun, 27 Oct 2024 19:41:57 +0900
+Subject: [PATCH] arm64:dts:imx8mp-debix-model-a: Enable the HDMI
+
+Signed-off-by: Yusuke Mitsuki <mickey.happygolucky@gmail.com>
+---
+ .../dts/freescale/imx8mp-debix-model-a.dts    | 79 +++++++++++++++++++
+ 1 file changed, 79 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+index 011aa4489284..c33b96661b3c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
+@@ -201,6 +201,18 @@ &i2c2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c2>;
+ 	status = "okay";
++
++	lvds_bridge: lvds-to-hdmi-bridge@4c {
++		compatible = "ite,it6263";
++		reg = <0x4c>;
++		reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
++
++		port {
++			it6263_in: endpoint {
++				remote-endpoint = <&lvds_out>;
++			};
++		};
++	};
+ };
+ 
+ &i2c3 {
+@@ -241,6 +253,57 @@ &i2c6 {
+ 	status = "okay";
+ };
+ 
++&hdmi_blk_ctrl {
++	status = "okay";
++};
++
++&hdmi_pavi {
++	status = "okay";
++};
++
++&hdmi {
++	status = "okay";
++};
++
++&hdmiphy {
++	status = "okay";
++};
++
++&lcdif1 {
++	status = "okay";
++};
++
++&lcdif2 {
++	status = "okay";
++};
++
++&lcdif3 {
++	status = "okay";
++
++	thres-low  = <1 2>;             /* (FIFO * 1 / 2) */
++	thres-high = <3 4>;             /* (FIFO * 3 / 4) */
++};
++
++&ldb {
++	status = "okay";
++
++	lvds-channel@0 {
++		status = "okay";
++
++		port@1 {
++			reg = <1>;
++
++			lvds_out: endpoint {
++				remote-endpoint = <&it6263_in>;
++			};
++		};
++	};
++};
++
++&ldb_phy {
++	status = "okay";
++};
++
+ &snvs_pwrkey {
+ 	status = "okay";
+ };
+@@ -264,6 +327,10 @@ &uart4 {
+ 	status = "okay";
+ };
+ 
++&irqsteer_hdmi {
++	status = "okay";
++};
++
+ &usb3_phy1 {
+ 	phy-supply = <&reg_usb_hub>;
+ 	status = "okay";
+@@ -331,6 +398,18 @@ &wdog1 {
+ };
+ 
+ &iomuxc {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_hog>;
++
++	pinctrl_hog: hoggrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL	0x400001c2
++			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0x400001c2
++			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x40000010
++			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x40000010
++		>;
++	};
++
+ 	pinctrl_eqos: eqosgrp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_ENET_MDC__ENET_QOS_MDC				0x3
